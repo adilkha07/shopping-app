@@ -15,8 +15,6 @@ public final class ErrorMessages {
     public static final String INVALID_USER_MSG = "You are not a valid user";
     public static final String INVALID_PRODUCT_MSG = "Product does not exist, please check product id";
     public static final String STOCK_UNAVAILABLE_MSG = "We do not have the requested stock";
-    public static final String NO_SUCH_TEAM_MSG = "Bad team input!!";
-    public static final String NO_SUCH_PUBLIC_CHANNEL_TIED_TO_ORG = "Invalid public channel, it may not be linked to the organisation";
 
     private ErrorMessages() {
         throw new UnsupportedOperationException();

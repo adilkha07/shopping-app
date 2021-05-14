@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shopping.app.dbo.CartRepository;
-import com.shopping.app.dbo.ProductRepository;
-import com.shopping.app.dbo.UserRepository;
 import com.shopping.app.dto.AddProductsToCartDto;
 import com.shopping.app.dto.CartDetailsDto;
 import com.shopping.app.entity.CartItem;
@@ -28,19 +26,15 @@ import com.shopping.app.handler.UserHandler;
 @RestController
 @RequestMapping("/cart")
 public class CartController {
-    private final UserRepository userRepository;
+
     private final CartRepository cartRepository;
-    private final ProductRepository productRepository;
     private final CartItemHandler cartItemHandler;
     private final UserHandler userHandler;
 
     @Autowired
-    CartController(final UserRepository userRepository, final CartRepository cartRepository,
-                   final ProductRepository productRepository, final CartItemHandler cartItemHandler,
+    CartController(final CartRepository cartRepository, final CartItemHandler cartItemHandler,
                    final UserHandler userHandler) {
-        this.userRepository = userRepository;
         this.cartRepository = cartRepository;
-        this.productRepository = productRepository;
         this.cartItemHandler = cartItemHandler;
         this.userHandler = userHandler;
     }
@@ -61,7 +55,7 @@ public class CartController {
     public List<CartDetailsDto> getCart(
             @Valid @RequestParam final String userContactNo) {
         final User user = userHandler.getUser(userContactNo);
-        List<CartItem> cartItems = cartRepository.findAllByUserId(user.getContact_no());
+        final List<CartItem> cartItems = cartRepository.findAllByUserId(user.getContact_no());
         if (cartItems.size() == 0) {
             return null;
         } else {
