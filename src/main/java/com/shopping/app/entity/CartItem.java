@@ -1,6 +1,7 @@
 package com.shopping.app.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
@@ -23,19 +24,19 @@ import lombok.Data;
 @Table(name = "cart")
 @AllArgsConstructor
 @Builder
-public class Cart {
+public class CartItem {
     @Id
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_contact_no_fk", foreignKey = @ForeignKey(name = "user_contact_no_fk"))
     User user_contact_no_fk;
     @Id
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id_fk", foreignKey = @ForeignKey(name = "product_id_fk"))
     Product product_id_fk;
     @NotNull
     int quantity;
 
-    private Cart() {
+    private CartItem() {
     }
 
 }

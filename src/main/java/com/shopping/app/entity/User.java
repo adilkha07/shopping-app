@@ -33,7 +33,7 @@ public class User {
     private String name;
 
     @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL, mappedBy = "user_contact_no_fk")
-    List<Cart> cart = new ArrayList<>();
+    List<CartItem> cart = new ArrayList<>();
 
     private User() {
     }

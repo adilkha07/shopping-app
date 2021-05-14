@@ -48,7 +48,7 @@ public class Product {
     Category category_id_fk;
 
     @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL, mappedBy = "product_id_fk")
-    List<Cart> cart = new ArrayList<>();
+    List<CartItem> cart = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "offer_id_fk", foreignKey = @ForeignKey(name = "offer_id_fk"))
