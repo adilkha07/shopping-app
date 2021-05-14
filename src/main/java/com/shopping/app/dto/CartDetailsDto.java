@@ -12,6 +12,6 @@ public class CartDetailsDto {
     String productName;
     int quantity;
     int pricePerItem;
-    String discountInformation;
-    int finalPrice;
+    String offerInformation;
+    int price;
 }
