@@ -22,9 +22,9 @@ public class CartItemHandler {
     private final ProductRepository productRepository;
     private final CartRepository cartRepository;
 
-    CartItemHandler(final ProductRepository productRepository,  final CartRepository cartRepository) {
+    CartItemHandler(final ProductRepository productRepository, final CartRepository cartRepository) {
         this.productRepository = productRepository;
-        this.cartRepository=cartRepository;
+        this.cartRepository = cartRepository;
     }
 
     public CartDetailsDto getCartItems(CartItem item) {
@@ -32,11 +32,10 @@ public class CartItemHandler {
         final Offer offer = product.getOffer_id_fk();
         final int pricePerItem = product.getPrice();
         final int quantity = item.getQuantity();
-        final int minPurchaseQuantity = offer.getMin_purchase_quantity();
-        final DiscountType discountType = offer.getDiscount_type();
         final String offerInformation;
         final int price;
-        if (quantity >= minPurchaseQuantity) {
+        if (offer != null && quantity >= offer.getMin_purchase_quantity()) {
+            final DiscountType discountType = offer.getDiscount_type();
             if (discountType.equals(DiscountType.FLAT)) {
                 offerInformation = "flat Rs. " + offer.getOffer_value() + " off";
                 price = quantity * pricePerItem - offer.getOffer_value();
@@ -50,7 +49,7 @@ public class CartItemHandler {
             }
         } else {
             offerInformation = "nil";
-            price = product.getPrice();
+            price = quantity * product.getPrice();
         }
         return CartDetailsDto.builder().productId(product.getId()).productName(product.getName())
                 .pricePerItem(product.getPrice()).quantity(item.getQuantity())
@@ -67,8 +66,7 @@ public class CartItemHandler {
                     .append(productOptional.get().getStock());
             throw new BadRequestException(sb.toString());
         } else {
-            CartItem ct =
-             CartItem.builder().user_contact_no_fk(user).product_id_fk(productOptional.get())
+            CartItem ct = CartItem.builder().user_contact_no_fk(user).product_id_fk(productOptional.get())
                     .quantity(productQuantityDto.getQuantity())
                     .build();
             cartRepository.save(ct);
