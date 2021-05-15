@@ -34,7 +34,7 @@ import lombok.Data;
 public class Product {
 
     @Id
-    @Type(type="uuid-char")
+    @Type(type = "uuid-char")
     private UUID id;
 
     @NotEmpty
@@ -57,7 +57,7 @@ public class Product {
     @JoinColumn(name = "offer_id_fk", foreignKey = @ForeignKey(name = "offer_id_fk"))
     Offer offer_id_fk;
 
-    private Product() {
+    Product() {
     }
 
 }

@@ -10,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Type;
@@ -29,7 +31,7 @@ import lombok.Data;
 @Builder
 public class Offer {
     @Id
-    @Type(type="uuid-char")
+    @Type(type = "uuid-char")
     UUID id;
 
     @NotNull
@@ -38,6 +40,7 @@ public class Offer {
     @NotNull
     int offer_value;
 
+    @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(60) CHECK (discount_type IN ('FLAT', 'PERCENTAGE', 'FREEBIE'))")
     private DiscountType discount_type;
 

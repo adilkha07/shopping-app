@@ -1,8 +1,13 @@
 package com.shopping.app.entity;
 
 import java.io.Serializable;
+import java.util.UUID;
 
+import org.hibernate.annotations.Type;
+
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 /**
  * 
@@ -11,15 +16,12 @@ import lombok.AllArgsConstructor;
 
 @SuppressWarnings("serial")
 @AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class UserProductId implements Serializable {
     @SuppressWarnings("unused")
-    private User user_contact_no_fk;
+    private String user_contact_no_fk;
 
-    @SuppressWarnings("unused")
-    private Product product_id_fk;
+    @Type(type = "uuid-char")
+    private UUID product_id_fk;
 
-    @SuppressWarnings("unused")
-    private UserProductId() {
-
-    }
 }

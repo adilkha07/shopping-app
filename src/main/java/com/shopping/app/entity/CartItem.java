@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Type;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,6 +32,7 @@ public class CartItem {
     @JoinColumn(name = "user_contact_no_fk", foreignKey = @ForeignKey(name = "user_contact_no_fk"))
     User user_contact_no_fk;
     @Id
+    @Type(type = "uuid-char")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id_fk", foreignKey = @ForeignKey(name = "product_id_fk"))
     Product product_id_fk;
