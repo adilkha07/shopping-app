@@ -4,7 +4,6 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.shopping.app.dbo.CartRepository;
 import com.shopping.app.dbo.ProductRepository;
 import com.shopping.app.dto.CartDetailsDto;
 import com.shopping.app.dto.ProductQuantityDto;
@@ -20,11 +19,9 @@ import com.shopping.app.exception.ErrorMessages;
 public class CartItemHandler {
 
     private final ProductRepository productRepository;
-    private final CartRepository cartRepository;
 
-    protected CartItemHandler(final ProductRepository productRepository, final CartRepository cartRepository) {
+    protected CartItemHandler(final ProductRepository productRepository) {
         this.productRepository = productRepository;
-        this.cartRepository = cartRepository;
     }
 
     public CartDetailsDto getCartItems(CartItem item) {

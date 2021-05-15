@@ -35,7 +35,7 @@ public class CartItemHandlerTest {
 
     @BeforeEach
     void setup() {
-        cartItemHandler = new CartItemHandler(productRepository, cartRepository);
+        cartItemHandler = new CartItemHandler(productRepository);
     }
 
     @Test
