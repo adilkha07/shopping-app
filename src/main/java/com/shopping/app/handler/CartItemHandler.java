@@ -22,7 +22,7 @@ public class CartItemHandler {
     private final ProductRepository productRepository;
     private final CartRepository cartRepository;
 
-    CartItemHandler(final ProductRepository productRepository, final CartRepository cartRepository) {
+    protected CartItemHandler(final ProductRepository productRepository, final CartRepository cartRepository) {
         this.productRepository = productRepository;
         this.cartRepository = cartRepository;
     }
@@ -37,7 +37,7 @@ public class CartItemHandler {
         if (offer != null && quantity >= offer.getMin_purchase_quantity()) {
             final DiscountType discountType = offer.getDiscount_type();
             if (discountType.equals(DiscountType.FLAT)) {
-                offerInformation = "flat Rs. " + offer.getOffer_value() + " off";
+                offerInformation = "flat Rs." + offer.getOffer_value() + " off";
                 price = quantity * pricePerItem - offer.getOffer_value();
             } else if (discountType.equals(DiscountType.FREEBIE)) {
                 offerInformation = "you get " + offer.getOffer_value() + " more!!";
@@ -66,11 +66,9 @@ public class CartItemHandler {
                     .append(productOptional.get().getStock());
             throw new BadRequestException(sb.toString());
         } else {
-            CartItem ct = CartItem.builder().user_contact_no_fk(user).product_id_fk(productOptional.get())
+            return CartItem.builder().user_contact_no_fk(user).product_id_fk(productOptional.get())
                     .quantity(productQuantityDto.getQuantity())
                     .build();
-            cartRepository.save(ct);
-            return ct;
         }
     }
 }
