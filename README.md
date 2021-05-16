@@ -54,7 +54,7 @@ the endpoints will be exposed to localhost:8080
 
 **DB schema diagram**
 
-<img width="641" alt="Screenshot 2021-05-16 at 11 14 25" src="https://user-images.githubusercontent.com/25589745/118386849-ff713d80-b637-11eb-9063-172dec7fdc31.png">
+<img width="641" alt="Screenshot 2021-05-16 at 11 26 48" src="https://user-images.githubusercontent.com/25589745/118387072-b1f5d000-b639-11eb-9105-91f33de226eb.png">
 
 **DB Used**
 
