@@ -1,5 +1,5 @@
 # shopping-app
-This is a demo spring boot rest api  application which exposes the following endpoints,
+This is a demo spring boot rest api for shooping cart application which exposes the following endpoints,
 
 **1. Post items to a cart of a user:**
 A user can add items to his cart using this endpoint.
